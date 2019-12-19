@@ -1,9 +1,6 @@
 package com.tavisca.irctc.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Station {
@@ -15,7 +12,8 @@ public class Station {
     public Station() {
     }
 
-    public Station( String name) {
+
+    public Station(String name) {
         this.name = name;
     }
 

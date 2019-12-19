@@ -15,4 +15,8 @@ public class AdminService {
     public void addTrain(Train train){
         trainRepo.save(train);
     }
+
+    public Train findTrain(int id) {
+        return trainRepo.findById(id).get();
+    }
 }

@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.Map;
 
 @Entity
-
 public class Train {
     @Id
     private int id;
     private String name;
     private Instant originatingTime;
-    @OneToMany(targetEntity = Stop.class)
+
+    @OneToMany(targetEntity = Stop.class,cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Stop> stops;
     @ElementCollection
     private Map<BerthType, Double> farePerKM;

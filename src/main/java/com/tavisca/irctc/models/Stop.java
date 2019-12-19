@@ -17,7 +17,8 @@ public class Stop {
 
     @ElementCollection
     private Map<BerthType, Integer> currentAvailability;
-    @ManyToOne(targetEntity = Station.class)
+
+    @ManyToOne(targetEntity = Station.class,fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Station station;
 
     public Station getStation() {
