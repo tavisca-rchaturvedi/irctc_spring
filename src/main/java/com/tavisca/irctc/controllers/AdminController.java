@@ -1,18 +1,16 @@
 package com.tavisca.irctc.controllers;
 
 import com.tavisca.irctc.enums.BerthType;
-import com.tavisca.irctc.models.Station;
 import com.tavisca.irctc.models.Stop;
 import com.tavisca.irctc.models.Train;
 import com.tavisca.irctc.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
+import java.util.*;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController()
@@ -22,7 +20,6 @@ public class AdminController {
     AdminService adminService;
 
     @PostMapping("/addTrain")
-
     public void addTrain(@RequestBody Train train) {
 
 //        Station pune = new Station( "Pune");
@@ -30,8 +27,8 @@ public class AdminController {
 //
 //
 //        List<Stop> stops =new ArrayList<Stop>(){{
-//            add(new Stop(Instant.now(), Instant.now(), 200, new HashMap<BerthType, Integer>(){{put(BerthType.SECOND_AC, 5);}}, pune));
-//            add(new Stop(Instant.now(), Instant.now(), 200, new HashMap<BerthType, Integer>(){{put(BerthType.FIRST_AC, 5);}}, mumbai));
+//            add(new Stop(Instant.now(), Instant.now(), 200, new HashMap<BerthType, Integer>(){{put(BerthType.SECOND_AC, 5);}}, "pune"));
+//            add(new Stop(Instant.now(), Instant.now(), 200, new HashMap<BerthType, Integer>(){{put(BerthType.FIRST_AC, 5);}}, "mumbai"));
 //        }};
 //
 //        Map<BerthType, Double> fare = new HashMap<BerthType, Double>(){{
@@ -52,6 +49,7 @@ public class AdminController {
     public Train findTrain(@PathVariable  int id){
         return adminService.findTrain(id);
     }
+
 
 
 }

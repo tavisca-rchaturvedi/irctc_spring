@@ -1,6 +1,7 @@
 package com.tavisca.irctc.models;
 
 import com.tavisca.irctc.enums.BerthType;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -10,12 +11,17 @@ import java.util.Map;
 @Entity
 public class Train {
     @Id
+    @Column(name="train_id")
     private int id;
+    @Column(name="train_name")
     private String name;
     private Instant originatingTime;
 
-    @OneToMany(targetEntity = Stop.class,cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "train")
     private List<Stop> stops;
+
+
     @ElementCollection
     private Map<BerthType, Double> farePerKM;
     @ElementCollection
@@ -63,6 +69,10 @@ public class Train {
 
     public void setStops(List<Stop> stops) {
         this.stops = stops;
+
+        for(Stop stop : stops)
+            stop.setTrain(this);
+
     }
 
     public Map<BerthType, Double> getFarePerKM() {

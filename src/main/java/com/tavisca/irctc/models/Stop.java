@@ -1,16 +1,22 @@
 package com.tavisca.irctc.models;
 
 import com.tavisca.irctc.enums.BerthType;
-
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.Map;
 
 @Entity
-public class Stop {
+//@IdClass(StopId.class)
+public class Stop implements Serializable {
+//    @Id
+//    private int trainId;
+
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "stop_id")
     private int id;
+
     private Instant arrivalTime;
     private Instant departureTime;
     private int distanceTravelled;
@@ -18,27 +24,37 @@ public class Stop {
     @ElementCollection
     private Map<BerthType, Integer> currentAvailability;
 
-    @ManyToOne(targetEntity = Station.class,fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Station station;
+    private String stationName;
 
-    public Station getStation() {
-        return station;
-    }
-
-    public void setStation(Station station) {
-        this.station = station;
-    }
+    @ManyToOne
+    private Train train;
 
     public Stop() {
     }
 
-    public Stop(Instant arrivalTime, Instant departureTime, int distanceTravelled, Map<BerthType, Integer> currentAvailability, Station station) {
+    public Stop(Instant arrivalTime, Instant departureTime, int distanceTravelled, Map<BerthType, Integer> currentAvailability, String stationName) {
 
         this.arrivalTime = arrivalTime;
         this.departureTime = departureTime;
         this.distanceTravelled = distanceTravelled;
         this.currentAvailability = currentAvailability;
-        this.station = station;
+        this.stationName = stationName;
+    }
+
+    public String getStationName() {
+        return stationName;
+    }
+
+    public void setStationName(String stationName) {
+        this.stationName = stationName;
+    }
+
+    public Train getTrain() {
+        return train;
+    }
+
+    public void setTrain(Train train) {
+        this.train = train;
     }
 
     public int getId() {
@@ -79,5 +95,19 @@ public class Stop {
 
     public void setCurrentAvailability(Map<BerthType, Integer> currentAvailability) {
         this.currentAvailability = currentAvailability;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "Stop{" +
+                "id=" + id +
+                ", arrivalTime=" + arrivalTime +
+                ", departureTime=" + departureTime +
+                ", distanceTravelled=" + distanceTravelled +
+                ", currentAvailability=" + currentAvailability +
+                ", stationName='" + stationName + '\'' +
+                '}';
     }
 }
