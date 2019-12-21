@@ -1,7 +1,6 @@
 package com.tavisca.irctc.models;
 
 import com.tavisca.irctc.enums.BerthType;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.time.Instant;
