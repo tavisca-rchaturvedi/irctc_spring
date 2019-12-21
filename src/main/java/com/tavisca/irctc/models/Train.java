@@ -1,5 +1,6 @@
 package com.tavisca.irctc.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.tavisca.irctc.enums.BerthType;
 
 import javax.persistence.*;
@@ -66,6 +67,7 @@ public class Train {
         return stops;
     }
 
+    @JsonManagedReference
     public void setStops(List<Stop> stops) {
         this.stops = stops;
 

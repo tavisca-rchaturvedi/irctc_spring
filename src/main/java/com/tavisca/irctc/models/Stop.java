@@ -1,5 +1,6 @@
 package com.tavisca.irctc.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.tavisca.irctc.enums.BerthType;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -7,10 +8,8 @@ import java.time.Instant;
 import java.util.Map;
 
 @Entity
-//@IdClass(StopId.class)
+
 public class Stop implements Serializable {
-//    @Id
-//    private int trainId;
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -49,6 +48,7 @@ public class Stop implements Serializable {
         this.stationName = stationName;
     }
 
+    @JsonBackReference
     public Train getTrain() {
         return train;
     }
