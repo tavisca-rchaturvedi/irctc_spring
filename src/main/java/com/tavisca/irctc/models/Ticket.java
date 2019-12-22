@@ -23,6 +23,7 @@ public class Ticket  {
     private String source;
     private String destination;
     private int distance;
+    private int noOfSeats;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ticket")
     private List<Passenger> passengerList;
 
@@ -30,18 +31,13 @@ public class Ticket  {
     public Ticket() {
     }
 
-    public Ticket(int trainId, String trainName, Instant bookingDate, Instant journeyDate, double price, BerthType berthType, List<Passenger> passengerList, String source, String destination, int distance) {
 
-        this.trainId = trainId;
-        this.trainName = trainName;
-        this.bookingDate = bookingDate;
-        this.journeyDate = journeyDate;
-        this.price = price;
-        this.berthType = berthType;
-        this.passengerList = passengerList;
-        this.source = source;
-        this.destination = destination;
-        this.distance = distance;
+    public int getNoOfSeats() {
+        return noOfSeats;
+    }
+
+    public void setNoOfSeats(int noOfSeats) {
+        this.noOfSeats = noOfSeats;
     }
 
     public int getId() {
