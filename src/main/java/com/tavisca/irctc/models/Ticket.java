@@ -1,5 +1,6 @@
 package com.tavisca.irctc.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.tavisca.irctc.enums.BerthType;
 
@@ -11,7 +12,7 @@ import java.util.List;
 public class Ticket  {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "booking_id")
     private int id;
     private int trainId;
@@ -24,13 +25,23 @@ public class Ticket  {
     private String destination;
     private int distance;
     private int noOfSeats;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ticket")
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "ticket")
     private List<Passenger> passengerList;
+
+    private int userId;
+
 
 
     public Ticket() {
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public int getNoOfSeats() {
         return noOfSeats;
@@ -131,4 +142,5 @@ public class Ticket  {
         for(Passenger p :passengerList)
             p.setTicket(this);
     }
+
 }

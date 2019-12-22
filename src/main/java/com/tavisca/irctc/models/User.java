@@ -1,8 +1,11 @@
 package com.tavisca.irctc.models;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.tavisca.irctc.enums.Gender;
 import com.tavisca.irctc.enums.Role;
-import org.hibernate.validator.constraints.UniqueElements;
+
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,7 +14,7 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     @Id
-    @GeneratedValue(strategy =GenerationType.AUTO)
+    @GeneratedValue(strategy =GenerationType.IDENTITY)
     private  int id;
     private String name;
     private int age;
@@ -21,17 +24,30 @@ public class User implements Serializable {
     private String password;
     private Role role;
 
+
+
     public User() {
     }
 
-    public User( String name, int age, Gender gender, String email, String password) {
+    public User(String name, int age, Gender gender, String email, String password, Role role) {
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.email = email;
         this.password = password;
-        this.role=Role.GeneralUser;
+        this.role = role;
+
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
 
     public String getName() {
         return name;
