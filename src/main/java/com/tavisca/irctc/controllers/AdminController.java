@@ -1,17 +1,11 @@
 package com.tavisca.irctc.controllers;
 
-import com.tavisca.irctc.enums.BerthType;
-import com.tavisca.irctc.models.Stop;
 import com.tavisca.irctc.models.Train;
 import com.tavisca.irctc.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController()
 public class AdminController {
@@ -50,6 +44,19 @@ public class AdminController {
         return adminService.findTrain(id);
     }
 
+    @DeleteMapping("/deleteTrain/{id}")
+    public void deleteTrain(@PathVariable int id){
+        adminService.deleteTrainById(id);
+    }
 
+    @PutMapping("modifyTrains")
+    public Train modifyTrain(@RequestBody Train train){
+        return adminService.modifyTrain(train);
+    }
+
+    @GetMapping("/trains")
+    public List<Train> showAllTrain(){
+        return adminService.findAllTrains();
+    }
 
 }

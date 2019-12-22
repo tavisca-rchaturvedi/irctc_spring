@@ -3,10 +3,10 @@ package com.tavisca.irctc.services;
 import com.tavisca.irctc.dao.TrainRepo;
 import com.tavisca.irctc.models.Train;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AdminService {
@@ -27,5 +27,17 @@ public class AdminService {
 
     };
 
+    public void deleteTrainById(int id) {
+        trainRepo.deleteById(id);
+    }
 
+
+    public Train modifyTrain(Train train) {
+        trainRepo.deleteById(train.getId());
+        return trainRepo.save(train);
+    }
+
+    public List<Train> findAllTrains() {
+        return trainRepo.findAll();
+    }
 }
