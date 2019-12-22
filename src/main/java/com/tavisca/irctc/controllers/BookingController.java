@@ -1,5 +1,6 @@
 package com.tavisca.irctc.controllers;
 
+import java.util.List;
 import com.tavisca.irctc.models.Ticket;
 import com.tavisca.irctc.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,11 @@ public class BookingController {
     public double getFare(@PathVariable int tid,@PathVariable String berthType,@PathVariable int seats,
                           @PathVariable String src,@PathVariable String destination) {
         return bookingService.calculateFare(tid,berthType,seats,src,destination);
+    }
+
+    @GetMapping("/bookedTickets/{id}")
+    public List<Ticket> getBookedTickets(@PathVariable int id){
+        return bookingService.findBookedTickets(id);
     }
 
 

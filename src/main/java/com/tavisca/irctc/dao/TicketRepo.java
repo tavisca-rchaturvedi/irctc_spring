@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.*;
+
 @Repository
 public interface TicketRepo extends JpaRepository<Ticket, Integer> {
 
@@ -15,4 +17,9 @@ public interface TicketRepo extends JpaRepository<Ticket, Integer> {
             " and tf.train_train_id=?1 and tf.fare_perKm_key=?2"
             ,nativeQuery = true)
     double calculateFare(int tid, int berthType, int seats, String src, String destination);
+
+    @Query(value ="Select  * " +
+            "from ticket as tk  " +
+            "where tk.user_id=?1 " ,nativeQuery = true)
+    List<Ticket> findTicketsByUserId(int id);
 }

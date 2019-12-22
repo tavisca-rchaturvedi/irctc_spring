@@ -6,6 +6,7 @@ import com.tavisca.irctc.models.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,5 +27,9 @@ public class BookingService {
     public double calculateFare(int tid, String berthType, int seats, String src, String destination) {
         int bt= BerthType.valueOf(berthType).ordinal();
         return  ticketRepo.calculateFare(tid,bt,seats,src,destination);
+    }
+
+    public List<Ticket> findBookedTickets(int id) {
+        return ticketRepo.findTicketsByUserId(id);
     }
 }

@@ -15,9 +15,9 @@ public class UserLoginController {
     UserLoginService userLoginService;
 
     @PostMapping("/addUsers")
-    public User addUser(@RequestBody User user1){
+    public User addUser(@RequestBody User user){
 
-        User user=new User("Krishna",23, Gender.MALE,"krishna@gmail.com","1234");
+//        User user=new User("Krishna",23, Gender.MALE,"krishna@gmail.com","1234");
 
        return  userLoginService.registerUser(user);
     }
