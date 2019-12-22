@@ -1,5 +1,6 @@
 package com.tavisca.irctc.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.tavisca.irctc.enums.Gender;
 
 import javax.persistence.*;
@@ -7,9 +8,8 @@ import javax.persistence.*;
 @Entity
 public class Passenger {
 
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private Gender gender;
@@ -34,9 +34,11 @@ public class Passenger {
         this.id = id;
     }
 
+    @JsonBackReference
     public Ticket getTicket() {
         return ticket;
     }
+
 
     public void setTicket(Ticket ticket) {
         this.ticket = ticket;
