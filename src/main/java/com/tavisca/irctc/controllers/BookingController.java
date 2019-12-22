@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
+@CrossOrigin(origins = "*")
+
 public class BookingController {
 
     @Autowired

@@ -4,11 +4,14 @@ import com.tavisca.irctc.enums.Gender;
 import com.tavisca.irctc.models.User;
 import com.tavisca.irctc.services.UserLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin(origins = "*")
+
 public class UserLoginController {
 
     @Autowired
