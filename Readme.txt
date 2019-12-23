@@ -1,3 +1,7 @@
+****Configure Database in Application Properties
+*Create "Demo" named Database in your local PC
+*change the password of root according to your Database
+
 Instructions for API
 
 **UserLoginCOntroller
